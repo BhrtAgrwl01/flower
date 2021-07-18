@@ -16,7 +16,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 if __name__ == "__main__":
 
     # Define Flower client
-    class EMNISTClient(fl.client.NumPyClient):
+    class KvasirClient(fl.client.NumPyClient):
 
         def __init__(self):
             self.alpha = float(alpha_val)
@@ -73,4 +73,4 @@ if __name__ == "__main__":
         adam = tf.keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-07, amsgrad=False, name='Adam')
         model.compile(optimizer = adam, loss = 'categorical_crossentropy', metrics=['accuracy'])
 
-        fl.client.start_numpy_client("127.0.0.1:12345", client=EMNISTClient())
+        fl.client.start_numpy_client("127.0.0.1:12345", client=KvasirClient())
