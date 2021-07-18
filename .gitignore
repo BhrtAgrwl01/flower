@@ -151,3 +151,8 @@ examples/**/dataset/**
 
 # Datasets
 baselines/datasets/leaf
+kvasir_party_576.npz
+kvasir_party_1024.npz
+kvasir_party_1072.npz
+ngrok
+ngrok-stable-linux-amd64.zip
