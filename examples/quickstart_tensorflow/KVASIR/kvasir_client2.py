@@ -9,6 +9,28 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.applications import ResNet50
+    
+physical_devices = tf.config.list_physical_devices('GPU')
+try:
+  tf.config.set_logical_device_configuration(
+    physical_devices[0],
+    [tf.config.LogicalDeviceConfiguration(memory_limit=3000),
+     tf.config.LogicalDeviceConfiguration(memory_limit=3000),
+     tf.config.LogicalDeviceConfiguration(memory_limit=3000)])
+
+
+  logical_devices = tf.config.list_logical_devices('GPU')
+  assert len(logical_devices) == len(physical_devices) + 1
+
+
+  tf.config.set_logical_device_configuration(
+    physical_devices[0],
+    [tf.config.LogicalDeviceConfiguration(memory_limit=10),
+     tf.config.LogicalDeviceConfiguration(memory_limit=10),
+     tf.config.LogicalDeviceConfiguration(memory_limit=10)])
+except:
+  # Invalid device or cannot modify logical devices once initialized.
+  pass
 
 # Make TensorFlow log less verbose
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
@@ -41,6 +63,7 @@ if __name__ == "__main__":
             loss, accuracy = model.evaluate(X_test, y_test)
             y_true = np.argmax(y_test, axis=1)
             y_pred = np.argmax(model.predict(X_test), axis=1)
+            print("Accuracy from evaluate method : ", accuracy)
             print("Confusion Matrix : \n", confusion_matrix(y_true, y_pred))
             print("Classification Report : \n", classification_report(y_true, y_pred))
             return loss, len(X_test), {"accuracy": accuracy}
