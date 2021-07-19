@@ -69,7 +69,7 @@ if __name__ == "__main__":
             y_pred = np.argmax(model.predict(X_test_agg), axis=1)
             print("Confusion Matrix for commom test dataset: \n", confusion_matrix(y_true, y_pred))
             print("Classification Report for commom test dataset: \n", classification_report(y_true, y_pred))
-            return loss, len(X_test_agg), {"accuracy": accuracy_agg}
+            return loss_agg, len(X_test_agg), {"accuracy": accuracy_agg}
 
     # Start Flower client
     for alpha_val in sys.argv[1:]:
