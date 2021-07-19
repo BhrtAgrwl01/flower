@@ -11,4 +11,4 @@ if __name__ == "__main__":
         min_available_clients=3,
     )
     for i in range(int(sys.argv[1])):
-        fl.server.start_server("127.0.0.1:12345", config={"num_rounds": 10}, strategy=strategy)
+        fl.server.start_server("0.0.0.0:5000", config={"num_rounds": 10}, strategy=strategy)
