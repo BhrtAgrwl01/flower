@@ -60,13 +60,15 @@ if __name__ == "__main__":
             global_weights = parameters
             fedplus_weights = ((1 - self.alpha) * np.array(local_weights)) + (self.alpha * np.array(global_weights))
             model.set_weights(fedplus_weights)
-            loss, accuracy = model.evaluate(X_test, y_test)
-            y_true = np.argmax(y_test, axis=1)
-            y_pred = np.argmax(model.predict(X_test), axis=1)
-            print("Accuracy from evaluate method : ", accuracy)
-            print("Confusion Matrix : \n", confusion_matrix(y_true, y_pred))
-            print("Classification Report : \n", classification_report(y_true, y_pred))
-            return loss, len(X_test), {"accuracy": accuracy}
+            loss_agg, accuracy_agg = model.evaluate(X_test_agg, y_test_agg)
+            print("Accuracy on common test dataset : ", accuracy_agg)
+            loss3, accuracy3 = model.evaluate(X_test3, y_test3)
+            print("Accuracy on personal test dataset : ", accuracy3)
+            y_true = np.argmax(y_test_agg, axis=1)
+            y_pred = np.argmax(model.predict(X_test_agg), axis=1)
+            print("Confusion Matrix for commom test dataset: \n", confusion_matrix(y_true, y_pred))
+            print("Classification Report for common test dataset: \n", classification_report(y_true, y_pred))
+            return loss, len(X_test_agg), {"accuracy": accuracy_agg}
 
     # Start Flower client
     for alpha_val in sys.argv[1:]:
@@ -74,14 +76,14 @@ if __name__ == "__main__":
         print("Current alpha value", float(alpha_val))
         print("Total alpha values :", len(sys.argv)-1)
 
-        data3 = np.load('kvasir_party_1072.npz', allow_pickle=True)
+        data3 = np.load('kvasir_party_1072_personal.npz', allow_pickle=True)
         X_train3 = data3["x_train"]
         y_train3 = data3["y_train"]
-        
-        data1 = np.load('kvasir_party_576.npz', allow_pickle=True)
-        X_test = data1["x_test"]
-        y_test = data1["y_test"]
-
+        X_test3 = data3["x_test"]
+        y_test3 = data3["y_test"]
+        data_agg = np.load('kvasir_agg.npz', allow_pickle=True)
+        X_test_agg= data_agg["x_test"]
+        y_test_agg= data_agg["y_test"]
 
         model = tf.keras.models.Sequential()
         model.add(ResNet50(include_top = False, pooling = 'avg', weights = 'imagenet'))

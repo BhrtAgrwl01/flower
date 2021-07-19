@@ -156,3 +156,7 @@ kvasir_party_1024.npz
 kvasir_party_1072.npz
 ngrok
 ngrok-stable-linux-amd64.zip
+kvasir_party_576_personal.npz
+kvasir_party_1024_personal.npz
+kvasir_party_1072_personal.npz
+kvasir_agg.npz
