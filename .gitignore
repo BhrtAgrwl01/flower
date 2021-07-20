@@ -162,3 +162,5 @@ kvasir_party_1072_personal.npz
 kvasir_agg.npz
 mednist_party1.npz
 mednist_party2.npz
+cifar_party1.npz
+cifar_party2.npz
