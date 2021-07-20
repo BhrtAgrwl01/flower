@@ -149,18 +149,42 @@ poetry.lock
 # Examples
 examples/**/dataset/**
 
+
+ngrok
+ngrok-stable-linux-amd64.zip
+
+
 # Datasets
 baselines/datasets/leaf
+
+
 kvasir_party_576.npz
 kvasir_party_1024.npz
 kvasir_party_1072.npz
-ngrok
-ngrok-stable-linux-amd64.zip
 kvasir_party_576_personal.npz
 kvasir_party_1024_personal.npz
 kvasir_party_1072_personal.npz
+
+
+
+
+
+
 kvasir_agg.npz
 mednist_party1.npz
 mednist_party2.npz
 cifar_party1.npz
 cifar_party2.npz
+first_splitted_dataset.npz
+second_splitted_dataset.npz
+5000_first_writer.npz
+5000_second_writer.npz
+femnist_writer1.npz
+femnist_writer2.npz
+femnist_writer1_letters5000.npz
+femnist_writer2_letters5000.npz
+letters_first_writer.npz
+letters_second_writer.npz
+femnist_writers_first10.npz
+femnist_writers_second10.npz
+
