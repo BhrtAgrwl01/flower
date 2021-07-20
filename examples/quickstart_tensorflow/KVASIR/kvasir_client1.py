@@ -65,10 +65,14 @@ if __name__ == "__main__":
             print("Accuracy on common test dataset : ", accuracy_agg)
             loss1, accuracy1 = model.evaluate(X_test1, y_test1)
             print("Accuracy on personal test dataset : ", accuracy1)
-            y_true = np.argmax(y_test_agg, axis=1)
-            y_pred = np.argmax(model.predict(X_test_agg), axis=1)
-            print("Confusion Matrix for commom test dataset: \n", confusion_matrix(y_true, y_pred))
-            print("Classification Report for commom test dataset: \n", classification_report(y_true, y_pred))
+            y_true_agg = np.argmax(y_test_agg, axis=1)
+            y_pred_agg = np.argmax(model.predict(X_test_agg), axis=1)
+            print("Confusion Matrix for commontest dataset: \n", confusion_matrix(y_true_agg, y_pred_agg))
+            print("Classification Report for common test dataset: \n", classification_report(y_true_agg, y_pred_agg))
+            y_true1 = np.argmax(y_test1, axis=1)
+            y_pred1 = np.argmax(model.predict(X_test1), axis=1)
+            print("Confusion Matrix for personal test dataset: \n", confusion_matrix(y_true1, y_pred1))
+            print("Classification Report for personal test dataset: \n", classification_report(y_true1, y_pred1))
             return loss_agg, len(X_test_agg), {"accuracy": accuracy_agg}
 
     # Start Flower client
