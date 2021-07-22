@@ -1,0 +1,5 @@
+{
+    "batch_size" : 128,
+    "local_epochs" : 3,
+    "alpha" : 0.5
+}
