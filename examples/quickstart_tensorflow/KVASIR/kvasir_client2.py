@@ -116,7 +116,7 @@ if __name__ == "__main__":
             print("Confusion Matrix for common test dataset: \n", confusion_matrix(y_true_agg, y_pred_agg))
             print("Classification Report for common test dataset: \n", classification_report(y_true_agg, y_pred_agg))
             y_true2 = np.argmax(y_test2, axis=1)
-            y_pred2 = np.argmax(model.predict(X_test2, axis=1))
+            y_pred2 = np.argmax(model.predict(X_test2), axis=1)
             print("Confusion Matrix for personal test dataset: \n", confusion_matrix(y_true2, y_pred2))
             print("Classification Report for personal test dataset: \n", classification_report(y_true2, y_pred2))
             return loss_agg, len(X_test_agg), {"accuracy": accuracy_agg}
